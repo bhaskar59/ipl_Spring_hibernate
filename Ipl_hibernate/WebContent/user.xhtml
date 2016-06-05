@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:head>
+	<title>JSF Spring Hibernate Integration</title>
+	<style type="text/css">
+.tg {
+	border-collapse: collapse;
+	border-spacing: 0;
+	border-color: #ccc;
+}
+
+.tg td {
+	font-family: Arial, sans-serif;
+	font-size: 14px;
+	padding: 10px 5px;
+	border-style: solid;
+	border-width: 1px;
+	overflow: hidden;
+	word-break: normal;
+	border-color: #ccc;
+	color: #333;
+	background-color: #fff;
+}
+
+.tg th {
+	font-family: Arial, sans-serif;
+	font-size: 14px;
+	font-weight: normal;
+	padding: 10px 5px;
+	border-style: solid;
+	border-width: 1px;
+	overflow: hidden;
+	word-break: normal;
+	border-color: #ccc;
+	color: #333;
+	background-color: #f0f0f0;
+}
+
+.tg .tg-4eph {
+	background-color: #f9f9f9
+}
+</style>
+<script type="text/javascript">
+window.onload=function() {
+	document.getElementById('totalUsersForm').style.display='none';
+	document.getElementById('successdiv').style.display='none';
+			};
+
+function successmsg() {
+document.getElementById('totalUsersForm').style.display='none';
+	document.getElementById('successdiv').style.display='block';
+
+}
+
+function showUsersList()  {
+document.getElementById('totalUsersForm').style.display='block';
+document.getElementById('successdiv').style.display='none';
+document.getElementById('newUserform').style.display='none';
+
+}
+
+function 
+
+</script>
+</h:head>
+<h:body>
+<div id="successdiv"
+						style="display: none; width: 766px">
+						<p>
+							<h:outputLabel id="valueExceeded"
+								value="User Successfully created" />
+						</p>
+					</div>
+
+	<h1>Create a New User</h1>
+	<h:form id="newUserform">
+		<table>
+			<tr>
+				<td><label>First Name :</label></td>
+				<td><h:inputText id="firstName" value="#{applicationUser.firstName}"></h:inputText>
+				</td>
+			</tr>
+				<td><label>Last Name :</label></td>
+				<td><h:inputText id="lastName" value="#{applicationUser.lastName}"></h:inputText>
+				</td>
+			</tr>
+			<tr>
+				<td><label>Email Id :</label></td>
+				<td><h:inputText id="emailId" value="#{applicationUser.userEmailIdentifier}"></h:inputText>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2"><h:commandButton
+						action="#{applicationUserService.addUser(applicationUser)}" value="Submit" onclick="successMsg();"></h:commandButton>
+				</td>
+			</tr>
+			
+			<tr>
+				<td colspan="2"><h:commandButton
+						action="#{applicationUserService.listPersons()}" value="viewUsers" onclick ="showUsersList();"></h:commandButton>
+				</td>
+			</tr>
+
+		</table>
+
+	</h:form>
+
+   <h:form id="totalUsersForm">
+	<br />
+	<h3>Persons List</h3>
+
+	<c:if test="${!empty applicationUserService.listPersons()}">
+		<table class="tg">
+			<tr>
+				<th width="80">First Name</th>
+				<th width="120">Last Name</th>
+				<th width="120">emailId</th>
+			</tr>
+			<ui:repeat value="${applicationUserService.listPersons()}" var="user">
+				<tr>
+					<td>${user.firstName}</td>
+					<td>${user.lastName}</td>
+					<td>${user.userEmailIdentifier}</td>
+				</tr>
+			</ui:repeat>
+		</table>
+	</c:if>
+	</h:form>
+
+</h:body>
+</html>

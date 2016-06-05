@@ -1,0 +1,5 @@
+com\ipl\springhibernate\service\ApplicationUserServiceImpl.class
+com\ipl\springhibernate\dao\ApplicationUserDAOImpl.class
+com\ipl\springhibernate\model\ApplicationUser.class
+com\ipl\springhibernate\service\ApplicationUserService.class
+com\ipl\springhibernate\dao\ApplicationUserDAO.class
